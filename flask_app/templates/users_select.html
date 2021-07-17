@@ -62,45 +62,35 @@
       <!-- Footer -->
       <footer id="footer">
         <section class="split contact">
-          <!-- Form -->
           <section class="alt">
-            <h2>Select A User</h2>
+            <h2>Select A User from the Table</h2>
           </section>
-          <section class="alt">
-            <form method="post" action="#">
-              <div class="fields">
-                <div class="field">
-                  <label for="first_name">First Name</label>
-                  <input type="text" name="first_name" id="name" />
-                </div>
-              </div>
-              <ul class="actions">
-                <li><input type="submit" value="Search" /></li>
-              </ul>
-            </form>
-          </section>
+          
+
+          {% if user != 'no_user' %}
           <section>
             <h3>Full Name</h3>
-            <p>Full Name</p>
+            <p>{{user.first_name}} {{user.last_name}}</p>
           </section>
           <section>
             <h3>Email</h3>
-            <p><a href="#">Email@email.com</a></p>
+            <p><a href="#">{{user.email}}</a></p>
           </section>
           <section>
             <h3>Created On</h3>
-            <p>Some Date</p>
+            <p>{{user.created_at}}</p>
           </section>
           <section>
             <h3>Updated On</h3>
-            <p>Some Date</p>
+            <p>{{user.updated_at}}</p>
           </section>
           <section>
             <ul class="actions">
-              <li><input type="submit" value="Edit" /></li>
-              <li><input type="submit" value="Delete" /></li>
+              <li><a href="/users/{{user.id}}/edit">Edit</a></li>
+              <li><a href="/users/{{user.id}}/delete">Delete</a></li>
             </ul>
           </section>
+          {% endif %}
           <section>
             <h3>Social</h3>
             <ul class="icons alt">

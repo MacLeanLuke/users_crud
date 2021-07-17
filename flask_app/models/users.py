@@ -1,8 +1,10 @@
 # import the function that will return an instance of a connection
 from flask_app.config.mysqlconnection import connectToMySQL
 # model the class after the friend table from our database
+
+
 class User:
-    def __init__( self , data ):
+    def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
         self.last_name = data['last_name']
@@ -10,6 +12,7 @@ class User:
         self.created_at = data['created_at']
         self.edited_at = data['edited_at']
     # Now we use class methods to query our database
+
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
@@ -19,21 +22,45 @@ class User:
         users = []
         # Iterate over the db results and create instances of friends with cls.
         for user in results:
-            users.append( cls(user) )
-            
+            users.append(cls(user))
+
         return users
 
     @classmethod
     def create_user(cls, data):
         query = "INSERT INTO users (first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s);"
 
-        new_user_id = connectToMySQL('usersdb').query_db(query,data)
+        new_user_id = connectToMySQL('usersdb').query_db(query, data)
 
         return new_user_id
-            
+
     @classmethod
     def delete_user(cls, data):
 
         query = "DELETE FROM users WHERE id = %(id)s;"
+
+        connectToMySQL('usersdb').query_db(query, data)
+
+    @classmethod
+    def get_user_by_id(cls, data):
+
+        query = "SELECT * FROM users WHERE users.id = %(id)s;"
+
+        results = connectToMySQL('usersdb').query_db(query, data)
+
+        return results
+
+        user = User(results[0])
+
+        print(user)
+
+        return user
+
+
+    @classmethod
+    def update_user(cls, data):
+
+        # UPDATE table_name SET column_name1 = 'some_value', column_name2='another_value' WHERE condition(s)
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s;"
 
         connectToMySQL('usersdb').query_db(query, data)
