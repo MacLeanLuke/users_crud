@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>A Massive User Table</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="static/assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="static/assets/css/noscript.css"
+    /></noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
+      <!-- Intro -->
+      <div id="intro">
+        <h1>
+          This is<br />
+          A Massive User Table
+        </h1>
+        <ul class="actions">
+          <li>
+            <a
+              href="#header"
+              class="button icon solid solo fa-arrow-down scrolly"
+              >Continue</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Header -->
+      <header id="header">
+        <a href="/" class="logo">Massive Users Table</a>
+      </header>
+
+      <!-- Nav -->
+      <nav id="nav">
+        <ul class="links">
+          <li class="active">
+            <a href="/">Users Table</a>
+          </li>
+          <li>
+            <a href="/users">User Entry</a>
+          </li>
+          <li>
+            <a href="/users_select">User Select</a>
+          </li>
+          <li>
+            <a href="/users_edit">User Edit</a>
+          </li>
+        </ul>
+        <ul class="icons">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/luke-maclean/"
+              class="icon brands fa-linkedin-in"
+              ><span class="label">LinkedIn</span></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/MacLeanLuke"
+              class="icon brands fa-github"
+              ><span class="label">GitHub</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+        <!-- Post -->
+        <section class="post">
+          <header class="major">
+            <h1>
+              Massive<br />
+              User Table
+            </h1>
+          </header>
+          <!-- Table -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                <tr>
+                  <td>{{user.id}}</td>
+                  <td>{{user.first_name}} {{user.last_name}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.created_at.strftime("%m/%d/%Y")}}</td>
+                  <td>
+                    <a href="/users/{{user.id}}/delete">Show</a>|
+                    <a href="/users/{{user.id}}/delete">Edit</a>|
+                    <a href="/users/{{user.id}}/delete">Delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <!-- <tfoot>
+                <tr>
+                  <td colspan="2"></td>
+                  <td>100.00</td>
+                </tr>
+              </tfoot> -->
+            </table>
+          </div>
+        </section>
+      </div>
+
+
+      <!-- Copyright -->
+      <div id="copyright">
+        <ul>
+          <li>&copy; Untitled</li>
+          <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/assets/js/jquery.min.js"></script>
+    <script src="static/assets/js/jquery.scrollex.min.js"></script>
+    <script src="static/assets/js/jquery.scrolly.min.js"></script>
+    <script src="static/assets/js/browser.min.js"></script>
+    <script src="static/assets/js/breakpoints.min.js"></script>
+    <script src="static/assets/js/util.js"></script>
+    <script src="static/assets/js/main.js"></script>
+  </body>
+</html>
